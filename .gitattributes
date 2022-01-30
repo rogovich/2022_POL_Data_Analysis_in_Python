@@ -1,2 +1,9 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+Ниже представлен код программы. Укажите, что выполняет данная программа.
+
+```lang:python;;container = {'one': (1, 2), 'two': (4, 6, 3), 'three': (7, 9)} 
+num = int(input()) 
+for elem in container: 
+    if container[elem][0] < num: 
+        print(container[elem][-1])```
+
+
