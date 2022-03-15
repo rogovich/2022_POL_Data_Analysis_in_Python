@@ -1,0 +1,506 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "ZJUp0TWXrlpA"
+   },
+   "source": [
+    "# Самостоятельная работа №2\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "SrLO4b5V8LTT"
+   },
+   "source": [
+    "**Максимум: 12 баллов. Максимальная оценка: 10 баллов.**\n",
+    "\n",
+    "* Импортируйте pandas под коротким именем `pd` и numpy под именем `np`. \n",
+    "* Считайте файл с данными в переменную `wine`: `https://raw.githubusercontent.com/drammazin/nobel/main/wine_quality.csv`. \n",
+    "* Выведите первые пять строк датасета."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>type</th>\n",
+       "      <th>fixed acidity</th>\n",
+       "      <th>volatile acidity</th>\n",
+       "      <th>citric acid</th>\n",
+       "      <th>residual sugar</th>\n",
+       "      <th>chlorides</th>\n",
+       "      <th>free sulfur dioxide</th>\n",
+       "      <th>total sulfur dioxide</th>\n",
+       "      <th>density</th>\n",
+       "      <th>pH</th>\n",
+       "      <th>sulphates</th>\n",
+       "      <th>alcohol</th>\n",
+       "      <th>quality</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>white</td>\n",
+       "      <td>7.0</td>\n",
+       "      <td>0.27</td>\n",
+       "      <td>0.36</td>\n",
+       "      <td>20.7</td>\n",
+       "      <td>0.045</td>\n",
+       "      <td>45.0</td>\n",
+       "      <td>170.0</td>\n",
+       "      <td>1.0010</td>\n",
+       "      <td>3.00</td>\n",
+       "      <td>0.45</td>\n",
+       "      <td>8.8</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>white</td>\n",
+       "      <td>6.3</td>\n",
+       "      <td>0.30</td>\n",
+       "      <td>0.34</td>\n",
+       "      <td>1.6</td>\n",
+       "      <td>0.049</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>132.0</td>\n",
+       "      <td>0.9940</td>\n",
+       "      <td>3.30</td>\n",
+       "      <td>0.49</td>\n",
+       "      <td>9.5</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>white</td>\n",
+       "      <td>8.1</td>\n",
+       "      <td>0.28</td>\n",
+       "      <td>0.40</td>\n",
+       "      <td>6.9</td>\n",
+       "      <td>0.050</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>97.0</td>\n",
+       "      <td>0.9951</td>\n",
+       "      <td>3.26</td>\n",
+       "      <td>0.44</td>\n",
+       "      <td>10.1</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>white</td>\n",
+       "      <td>7.2</td>\n",
+       "      <td>0.23</td>\n",
+       "      <td>0.32</td>\n",
+       "      <td>8.5</td>\n",
+       "      <td>0.058</td>\n",
+       "      <td>47.0</td>\n",
+       "      <td>186.0</td>\n",
+       "      <td>0.9956</td>\n",
+       "      <td>3.19</td>\n",
+       "      <td>0.40</td>\n",
+       "      <td>9.9</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>white</td>\n",
+       "      <td>7.2</td>\n",
+       "      <td>0.23</td>\n",
+       "      <td>0.32</td>\n",
+       "      <td>8.5</td>\n",
+       "      <td>0.058</td>\n",
+       "      <td>47.0</td>\n",
+       "      <td>186.0</td>\n",
+       "      <td>0.9956</td>\n",
+       "      <td>3.19</td>\n",
+       "      <td>0.40</td>\n",
+       "      <td>9.9</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    type  fixed acidity  volatile acidity  citric acid  residual sugar  \\\n",
+       "0  white            7.0              0.27         0.36            20.7   \n",
+       "1  white            6.3              0.30         0.34             1.6   \n",
+       "2  white            8.1              0.28         0.40             6.9   \n",
+       "3  white            7.2              0.23         0.32             8.5   \n",
+       "4  white            7.2              0.23         0.32             8.5   \n",
+       "\n",
+       "   chlorides  free sulfur dioxide  total sulfur dioxide  density    pH  \\\n",
+       "0      0.045                 45.0                 170.0   1.0010  3.00   \n",
+       "1      0.049                 14.0                 132.0   0.9940  3.30   \n",
+       "2      0.050                 30.0                  97.0   0.9951  3.26   \n",
+       "3      0.058                 47.0                 186.0   0.9956  3.19   \n",
+       "4      0.058                 47.0                 186.0   0.9956  3.19   \n",
+       "\n",
+       "   sulphates  alcohol  quality  \n",
+       "0       0.45      8.8        6  \n",
+       "1       0.49      9.5        6  \n",
+       "2       0.44     10.1        6  \n",
+       "3       0.40      9.9        6  \n",
+       "4       0.40      9.9        6  "
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "wine = pd.read_csv('https://raw.githubusercontent.com/drammazin/nobel/main/wine_quality.csv',\n",
+    "                  index_col=0)\n",
+    "wine.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "n8VdEW7J9U5y"
+   },
+   "source": [
+    "## Задание 1. 2 балла\n",
+    "Выведите среденее (`mean`), медианное (`median`) и модальное (`mode`) значения переменной `residual sugar`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "id": "TY_I--anG8kF"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "5.443957914281316\n",
+      "3.0\n",
+      "0    2.0\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(wine['residual sugar'].mean())\n",
+    "print(wine['residual sugar'].median())\n",
+    "print(wine['residual sugar'].mode())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "kwjSsI8IDqoA"
+   },
+   "source": [
+    "## Задание 2. 2 балла\n",
+    "Сгруппируйте датасет по типу вина (`type`). Выведите среднее значение переменной `free sulfur dioxide` для каждого типа."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "id": "Oge4hQI7G9XW"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "type\n",
+       "red      15.841808\n",
+       "white    35.317146\n",
+       "Name: free sulfur dioxide, dtype: float64"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "wine.groupby('type')['free sulfur dioxide'].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "nw6QEppoG-RA"
+   },
+   "source": [
+    "## Задание 3. 2 балла\n",
+    "Постройте гистограмму для переменной `residual sugar`.\n",
+    "\n",
+    "Является ли распределение нормальным? **ваш текстовый ответ здесь**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "id": "XagcbcLSG_Jr"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<AxesSubplot:>"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "wine['residual sugar'].hist()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "3ONsrjwJGjNV"
+   },
+   "source": [
+    "## Задание 4. 2 балла\n",
+    "Выведите все дескриптивные статистики используя метод `describe` для колонок `fixed acidity` и `volatile acidity` (для двух колонок одновременно — сначала отфильтруйте их из датафрейма)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "id": "RcX6OSuTHApJ"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>fixed acidity</th>\n",
+       "      <th>volatile acidity</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>6463.000000</td>\n",
+       "      <td>6463.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>7.217755</td>\n",
+       "      <td>0.339589</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>1.297913</td>\n",
+       "      <td>0.164639</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>3.800000</td>\n",
+       "      <td>0.080000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>6.400000</td>\n",
+       "      <td>0.230000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>7.000000</td>\n",
+       "      <td>0.290000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>7.700000</td>\n",
+       "      <td>0.400000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>15.900000</td>\n",
+       "      <td>1.580000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       fixed acidity  volatile acidity\n",
+       "count    6463.000000       6463.000000\n",
+       "mean        7.217755          0.339589\n",
+       "std         1.297913          0.164639\n",
+       "min         3.800000          0.080000\n",
+       "25%         6.400000          0.230000\n",
+       "50%         7.000000          0.290000\n",
+       "75%         7.700000          0.400000\n",
+       "max        15.900000          1.580000"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "wine[['fixed acidity', 'volatile acidity']].describe()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "xEr64Db9_AsH"
+   },
+   "source": [
+    "## Задание 5. 2 балла\n",
+    "\n",
+    "Напечайте 25-й и 75-й персентили для переменной `residual sugar`. Вам понадобится функция [percentile](https://numpy.org/doc/stable/reference/generated/numpy.percentile.html).\n",
+    "\n",
+    "Расчитайте интерквартильный размах для переменной и выведите его значение."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "id": "6O-gMAzkHBul"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1.8\n",
+      "8.1\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(np.percentile(wine['residual sugar'], 25))\n",
+    "print(np.percentile(wine['residual sugar'], 75))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Задание 6.2 балла\n",
+    "Сколько вин принадлежат к каждой категории `quality`? Выведите частотную таблицу."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "6    2820\n",
+       "5    2128\n",
+       "7    1074\n",
+       "4     214\n",
+       "8     192\n",
+       "3      30\n",
+       "9       5\n",
+       "Name: quality, dtype: int64"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "wine['quality'].value_counts()"
+   ]
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "collapsed_sections": [],
+   "name": "Practice 3 var 1",
+   "provenance": []
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
